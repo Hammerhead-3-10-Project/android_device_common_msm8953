@@ -1,0 +1,16 @@
+# Common system properties for the Samsung msm8953 family (system side only; the vendor props come from the
+# stock vendor partition)
+
+# Dalvik (3 GB RAM class, same values as the stock firmware)
+dalvik.vm.heapstartsize=8m
+dalvik.vm.heapgrowthlimit=256m
+dalvik.vm.heapsize=512m
+dalvik.vm.heaptargetutilization=0.75
+dalvik.vm.heapminfree=2m
+dalvik.vm.heapmaxfree=8m
+
+# Graphics (same as stock)
+debug.sf.hw=0
+debug.sf.latch_unsignaled=1
+debug.sf.enable_hwc_vds=1
+ro.opengles.version=196610
