@@ -85,3 +85,6 @@ BOARD_SEPOLICY_DIRS += $(COMMON_PATH)/sepolicy
 
 # Inherit the proprietary blobs shared by the family
 -include vendor/samsung/msm8953-common/BoardConfigVendor.mk
+
+# Audio: Android 10 supports only the XML policy (vendor ships audio_policy_configuration.xml)
+USE_XML_AUDIO_POLICY_CONF := 1
