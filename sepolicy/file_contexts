@@ -1,0 +1,3 @@
+# Samsung mount points created via BOARD_ROOT_EXTRA_FOLDERS
+/omr		u:object_r:rootfs:s0
+/preload	u:object_r:rootfs:s0
