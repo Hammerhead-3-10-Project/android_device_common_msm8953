@@ -8,8 +8,7 @@ COMMON_PATH := device/samsung/msm8953-common
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
-    $(COMMON_PATH) \
-    hardware/samsung
+    $(COMMON_PATH)
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(COMMON_PATH)/overlay
@@ -17,9 +16,7 @@ DEVICE_PACKAGE_OVERLAYS += $(COMMON_PATH)/overlay
 # Treble: the stock vendor (Android 10) is kept, only /system is built from source
 PRODUCT_SHIPPING_API_LEVEL := 26
 
-# Samsung hardware (hardware/samsung from the Lineage manifest)
-PRODUCT_PACKAGES += \
-    SamsungServiceMode
+# (Pixel Experience has no hardware/samsung: no Samsung-specific HAL/app is built from source)
 
 # Vendor-side HALs already shipped by the stock vendor partition are NOT rebuilt here.
 

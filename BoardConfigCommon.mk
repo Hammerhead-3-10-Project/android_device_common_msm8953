@@ -27,7 +27,7 @@ TARGET_USES_64_BIT_BINDER := true
 TARGET_BOOTLOADER_BOARD_NAME := msm8953
 TARGET_NO_BOOTLOADER := true
 
-# Platform (Lineage 17.1 maps msm8953 to QCOM_HARDWARE_VARIANT := msm8996, UM 3.18 family)
+# Platform (vendor/aosp maps msm8953 to QCOM_HARDWARE_VARIANT := msm8996, UM 3.18 family)
 TARGET_BOARD_PLATFORM := msm8953
 BOARD_USES_QCOM_HARDWARE := true
 
