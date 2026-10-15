@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     The Galaxy A6+ has no hardware navigation keys: show the on-screen navigation bar and make the
+     "System navigation" (3 buttons / 2 buttons / gestures) setting available. TrebuchetQuickStep is
+     already part of Lineage and the NavigationBarMode* overlays are in the system image.
+-->
+<resources>
+    <bool name="config_showNavigationBar">true</bool>
+    <bool name="config_swipe_up_gesture_setting_available">true</bool>
+</resources>
