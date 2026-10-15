@@ -63,8 +63,12 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
 BOARD_ROOT_EXTRA_FOLDERS := efs omr preload
 
-# Treble: the vendor is Android 10 (VNDK 29)
+# Treble: the vendor is Android 10 (VNDK 29), but it is "VNDK-lite" (ro.vndk.lite=true in the stock
+# vendor default.prop). With that property the linker loads /system/etc/ld.config.vndk_lite.txt; without
+# BOARD_VNDK_RUNTIME_DISABLE the build only installs the strict ld.config.29.txt, the linker finds no
+# config at all and every binary (system ones too) fails with "library ... not found".
 BOARD_VNDK_VERSION := current
+BOARD_VNDK_RUNTIME_DISABLE := true
 PRODUCT_FULL_TREBLE_OVERRIDE := true
 
 # Graphics
