@@ -1,0 +1,17 @@
+// Stub of "faceunlock_utils" from external/motorola/faceunlock.
+//
+// Pixel Experience 10 (Settings, frameworks/base/services/core) links against this library, but its repository lived on
+// gitlab.pixelexperience.org, a host that no longer exists (no DNS record, 2026-10-15), so it cannot be synced.
+// Only what the platform code calls is provided: FaceUnlockUtils.hasMotoFaceUnlock() (always false: the Motorola face
+// unlock service is not shipped here, the device is 32 bit) and the two AIDL interfaces FaceService.java compiles against.
+java_library {
+    name: "faceunlock_utils",
+    srcs: [
+        "java/**/*.java",
+        "aidl/**/*.aidl",
+    ],
+    aidl: {
+        local_include_dirs: ["aidl"],
+    },
+    installable: false,
+}
