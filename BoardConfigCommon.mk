@@ -48,14 +48,14 @@ BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 BOARD_FLASH_BLOCK_SIZE := 131072
 
-# Filesystems: no A/B, no dynamic partitions, separate system/vendor/odm
+# Filesystems: no A/B, no dynamic partitions, separate system and vendor. There is no odm image: the odm partition of
+# the phone holds the CSC (operator/region) data of the user's firmware and must not be overwritten by the ROM zip.
 BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR := vendor
-TARGET_COPY_OUT_ODM := odm
+TARGET_COPY_OUT_ODM := vendor/odm
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_HAS_LARGE_FILESYSTEM := true
 
