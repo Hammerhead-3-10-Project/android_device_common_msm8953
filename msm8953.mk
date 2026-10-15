@@ -22,3 +22,7 @@ PRODUCT_SHIPPING_API_LEVEL := 26
 
 # Proprietary system libraries required by the stock vendor HALs
 $(call inherit-product, vendor/samsung/msm8953-common/msm8953-common-vendor.mk)
+
+# 32-bit Setup Wizard: the one of vendor/gapps is arm64-only and is rejected by the 32-bit userspace (gapps/Android.bp)
+PRODUCT_PACKAGES += \
+    SetupWizardPrebuiltArm

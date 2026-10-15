@@ -1,0 +1,16 @@
+// The Setup Wizard of vendor/gapps (SetupWizardPrebuilt) only carries lib/arm64-v8a: the 32-bit userspace of this
+// device refuses it (PackageManager errorCode=-113, NO_MATCHING_ABIS), so no wizard ever runs and the device is never
+// provisioned. This is the same package (com.google.android.setupwizard, same permissions, so the privapp whitelist of
+// vendor/gapps still applies) built for armeabi-v7a, taken from MindTheGapps 10.0.0 arm (20230922).
+// An APK signed with v1 cannot have its native libraries stripped without breaking the signature, hence a second APK.
+android_app_import {
+    name: "SetupWizardPrebuiltArm",
+    apk: "SetupWizardPrebuiltArm.apk",
+    presigned: true,
+    privileged: true,
+    product_specific: true,
+    overrides: ["SetupWizardPrebuilt", "Provision"],
+    dex_preopt: {
+        enabled: false,
+    },
+}
