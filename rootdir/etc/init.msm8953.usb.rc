@@ -1,0 +1,11 @@
+# The stock vendor drives USB through Samsung's android_usb (sys.usb.configfs=0).
+# The 4.9 kernel only has configfs gadgets: the vendor already builds
+# /config/usb_gadget/g1 in "on boot" (init.qcom.usb.rc) and the compositions are
+# in init.msm.usb.configfs.rc / AOSP init.usb.configfs.rc, but those need
+# sys.usb.configfs=1 and sys.usb.controller. AOSP init.usb.rc resets configfs to
+# 0 in "on boot", so set it again whenever it goes back to 0.
+on init
+    setprop sys.usb.controller 7000000.dwc3
+
+on property:sys.usb.configfs=0
+    setprop sys.usb.configfs 1
