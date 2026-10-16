@@ -7,4 +7,28 @@
 <resources>
     <bool name="config_showNavigationBar">true</bool>
     <bool name="config_swipe_up_gesture_setting_available">true</bool>
+
+    <!-- Adaptive brightness: the CM36658 light sensor works (kernel), but without this the framework
+         does not create the automatic brightness controller and never enables the sensor.
+         7 lux thresholds, 8 backlight levels (the panel range is 10..255). -->
+    <bool name="config_automatic_brightness_available">true</bool>
+    <integer-array name="config_autoBrightnessLevels">
+        <item>10</item>
+        <item>30</item>
+        <item>100</item>
+        <item>300</item>
+        <item>1000</item>
+        <item>3000</item>
+        <item>8000</item>
+    </integer-array>
+    <integer-array name="config_autoBrightnessLcdBacklightValues">
+        <item>15</item>
+        <item>30</item>
+        <item>55</item>
+        <item>95</item>
+        <item>150</item>
+        <item>200</item>
+        <item>235</item>
+        <item>255</item>
+    </integer-array>
 </resources>
