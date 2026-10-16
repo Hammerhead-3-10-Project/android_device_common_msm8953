@@ -18,6 +18,11 @@ PRODUCT_SHIPPING_API_LEVEL := 26
 
 # (Pixel Experience has no hardware/samsung: no Samsung-specific HAL/app is built from source)
 
+# Compressed RAM swap: the stock kernel used Samsung vnswap, this tree uses zram (rootdir/etc/fstab.zram)
+PRODUCT_COPY_FILES += \
+    $(COMMON_PATH)/rootdir/etc/fstab.zram:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.zram \
+    $(COMMON_PATH)/rootdir/etc/init.msm8953.zram.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.msm8953.zram.rc
+
 # Vendor-side HALs already shipped by the stock vendor partition are NOT rebuilt here.
 
 # Proprietary system libraries required by the stock vendor HALs

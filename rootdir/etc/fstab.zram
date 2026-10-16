@@ -1,0 +1,8 @@
+# Compressed RAM swap for the Samsung msm8953 family (2.8 GB RAM).
+#
+# The stock firmware used Samsung's own swap (CONFIG_VNSWAP, the vendor sets vm.swappiness=130 for it); the
+# kernel of this tree has zram instead, and the Qualcomm zram setup of init.qcom.post_boot.sh is never run
+# (configure_memory_parameters returns immediately, the zram branch is only reached for msmnile/kona).
+# Activated by init.msm8953.zram.rc through swapon_all (fs_mgr: zramsize / max_comp_streams).
+#<src>            <mnt_point>  <type>  <mnt_flags>  <fs_mgr_flags>
+/dev/block/zram0  none         swap    defaults     zramsize=50%,max_comp_streams=4,swapprio=32758
