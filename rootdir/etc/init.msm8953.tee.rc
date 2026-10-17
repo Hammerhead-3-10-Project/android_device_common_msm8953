@@ -1,0 +1,34 @@
+# Trustonic Kinibi TEE. The stock system init.rc starts the TEE loader and the
+# MobiCore daemon; AOSP/PE has no such rules, so without them the secure world
+# never comes up (/dev/mobicore-user is created only after the daemon connects
+# to /dev/mobicore), which breaks proca, the fingerprint TA, etc.
+
+service tbaseLoader /vendor/bin/tbaseLoader tbase
+    class core
+    user system
+    group system
+    disabled
+    oneshot
+
+service run-mobicore /vendor/bin/mcDriverDaemon
+    class core
+    user system
+    group system
+    disabled
+
+on post-fs-data
+    mkdir /data/vendor/mcRegistry 0775 system system
+    mkdir /efs/TEE 0770 radio system
+    export MC_AUTH_TOKEN_PATH /efs/TEE
+
+on boot
+    chmod 0700 /dev/mobicore
+    chown system system /dev/mobicore
+    chmod 0666 /dev/mobicore-user
+    chown radio system /dev/mobicore-user
+
+on property:vendor.sys.qseecomd.enable=true
+    start tbaseLoader
+
+on property:vendor.sys.mobicore.loaded=true
+    start run-mobicore
