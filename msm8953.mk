@@ -23,7 +23,8 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/rootdir/etc/fstab.zram:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.zram \
     $(COMMON_PATH)/rootdir/etc/init.msm8953.zram.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.msm8953.zram.rc \
     $(COMMON_PATH)/rootdir/etc/init.msm8953.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.msm8953.usb.rc \
-    $(COMMON_PATH)/rootdir/etc/init.msm8953.tee.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.msm8953.tee.rc
+    $(COMMON_PATH)/rootdir/etc/init.msm8953.tee.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.msm8953.tee.rc \
+    frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
 
 # Vendor-side HALs already shipped by the stock vendor partition are NOT rebuilt here.
 
