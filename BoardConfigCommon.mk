@@ -12,14 +12,19 @@ BOARD_VENDOR := samsung
 # Allow building with a minimal tree while the vendor blobs are being sorted out
 ALLOW_MISSING_DEPENDENCIES := true
 
-# Architecture: arm64 kernel but a 32-bit only userspace on the supported devices (abilist armeabi-v7a);
-# binder is 64 bit. A device with a 64-bit userspace overrides these after including this file.
-TARGET_ARCH := arm
+# Native ARM64 framework, with ARM32 compatibility for stock Samsung services.
+TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
-TARGET_CPU_ABI := armeabi-v7a
-TARGET_CPU_ABI2 := armeabi
+TARGET_CPU_ABI := arm64-v8a
+TARGET_CPU_ABI2 :=
 TARGET_CPU_VARIANT := cortex-a53
 TARGET_CPU_VARIANT_RUNTIME := cortex-a53
+TARGET_2ND_ARCH := arm
+TARGET_2ND_ARCH_VARIANT := armv8-a
+TARGET_2ND_CPU_ABI := armeabi-v7a
+TARGET_2ND_CPU_ABI2 := armeabi
+TARGET_2ND_CPU_VARIANT := cortex-a53
+TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a53
 
 TARGET_USES_64_BIT_BINDER := true
 
@@ -73,9 +78,11 @@ PRODUCT_FULL_TREBLE_OVERRIDE := true
 
 # Graphics
 TARGET_USES_HWC2 := true
+TARGET_USES_GRALLOC1 := true
 TARGET_USES_ION := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
-OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
+# Use the Android 10 RenderScript CPU path; no compatible Adreno RS64 driver is installed.
+OVERRIDE_RS_DRIVER :=
 BOARD_USES_ADRENO := true
 
 # Properties

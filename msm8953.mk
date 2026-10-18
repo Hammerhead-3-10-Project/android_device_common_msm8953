@@ -31,11 +31,41 @@ PRODUCT_COPY_FILES += \
 # Proprietary system libraries required by the stock vendor HALs
 $(call inherit-product, vendor/samsung/msm8953-common/msm8953-common-vendor.mk)
 
-# 32-bit Setup Wizard: the one of vendor/gapps is arm64-only and is rejected by the 32-bit userspace (gapps/Android.bp)
-PRODUCT_PACKAGES += \
-    SetupWizardPrebuiltArm
+# The ARM64 GApps SetupWizard is selected by vendor/gapps; do not override it
+# with SetupWizardPrebuiltArm in the ARM64 product.
 
 # NFC framework and tag handling; the Samsung NFC HAL is supplied by vendor.
 PRODUCT_PACKAGES += \
     NfcNci \
     Tag
+
+# Platform/source implementations needed by the ARM64 clients. Existing ARM32
+# Samsung hardware services and their stock libraries remain in the vendor overlay.
+PRODUCT_PACKAGES += \
+    libion \
+    libtinyalsa \
+    libtinycompress \
+    gralloc.msm8953 \
+    hwcomposer.msm8953 \
+    android.hardware.graphics.mapper@2.0-impl-2.1 \
+    android.hardware.graphics.allocator@2.0-impl \
+    android.hardware.graphics.allocator@2.0-service \
+    android.hardware.graphics.composer@2.1-impl \
+    android.hardware.graphics.composer@2.1-service \
+    android.hardware.renderscript@1.0-impl \
+    libRS_internal \
+    libRSDriver \
+    libRSCpuRef
+
+
+# Build native media wrappers/helpers against Android 10. The stock OMX service
+# and ARM32 codecs remain in place; donor Vdec/Venc need a separate QSEE/VIDC audit.
+PRODUCT_PACKAGES += \
+    libOmxCore \
+    libmm-omxcore \
+    libstagefrighthw \
+    libc2dcolorconvert \
+    libhypv_intercept
+
+# Runtime support for retained Samsung ARM32 HALs and utilities.
+$(call inherit-product, $(COMMON_PATH)/runtime32.mk)

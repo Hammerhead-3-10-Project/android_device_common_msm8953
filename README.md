@@ -1,3 +1,12 @@
+# Samsung msm8953 ARM64 experiment
+
+The `pe-ten-arm64` branch selects ARM64+cortex-a53 with an ARM32 secondary ABI, source gralloc1 and
+Android 10 graphics/media/runtime components. `runtime32.mk` explicitly retains source shared libraries
+needed by the copied stock HALs. The ARM-only SetupWizard override is omitted; the product selects ARM64 GApps.
+
+Use the matching device/vendor `pe-ten-arm64` worktrees and the device `tools/build-arm64.sh` helper.
+The original `pe-ten` branch remains the ARM32 baseline. See device `ARM64_STATUS.md` for tests and limits.
+
 # device/samsung/msm8953-common — Samsung Snapdragon 450 (msm8953) family, LineageOS 17.1
 
 Shared configuration for Samsung phones with the msm8953/SDM450 SoC running with their **stock Android 10 vendor**
