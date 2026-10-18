@@ -34,3 +34,8 @@ $(call inherit-product, vendor/samsung/msm8953-common/msm8953-common-vendor.mk)
 # 32-bit Setup Wizard: the one of vendor/gapps is arm64-only and is rejected by the 32-bit userspace (gapps/Android.bp)
 PRODUCT_PACKAGES += \
     SetupWizardPrebuiltArm
+
+# NFC framework and tag handling; the Samsung NFC HAL is supplied by vendor.
+PRODUCT_PACKAGES += \
+    NfcNci \
+    Tag
