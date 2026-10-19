@@ -45,8 +45,6 @@ PRODUCT_PACKAGES += \
     libion \
     libtinyalsa \
     libtinycompress \
-    gralloc.msm8953 \
-    hwcomposer.msm8953 \
     android.hardware.graphics.mapper@2.0-impl-2.1 \
     android.hardware.graphics.allocator@2.0-impl \
     android.hardware.graphics.allocator@2.0-service \
@@ -69,3 +67,10 @@ PRODUCT_PACKAGES += \
 
 # Runtime support for retained Samsung ARM32 HALs and utilities.
 $(call inherit-product, $(COMMON_PATH)/runtime32.mk)
+
+# The 64-bit graphics stack uses the Android 11 donor gralloc/composer (renamed *_a11 so
+# they cannot collide with the CAF source modules). hw_get_module tries this variant first
+# and falls back to ro.board.platform, so the 32-bit stock HALs keep loading *.msm8953.
+PRODUCT_VENDOR_PROPERTIES += \
+    ro.hardware.gralloc=a11 \
+    ro.hardware.hwcomposer=a11
