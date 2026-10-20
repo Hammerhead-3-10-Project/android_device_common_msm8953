@@ -87,14 +87,11 @@ PRODUCT_PACKAGES += \
     libhwbinder.vendor:64
 
 # Libraries the Android 10 VNDK had and Android 11 no longer offers to the vendor (same soname as the stock vendor
-# expects): copied from the v29 snapshot, 32-bit only because the retained stock services are 32-bit. The vendor modules
-# built from source use libprotobuf-cpp-*-3.9.1, so there is no clash. Same idea as the xiaomi sdm439 trees.
-# The protobuf libraries are vendor_available in Android 11 and already installed by other modules, so they are requested
-# as packages (a second copy rule fails in Kati with 'overriding commands').
+# expects). They are vendor_available in Android 11 and some are already installed by other modules, so they are requested
+# as 32-bit vendor packages (a second copy rule fails in Kati with 'overriding commands'); the retained stock services are 32-bit.
 PRODUCT_PACKAGES += libprotobuf-cpp-lite.vendor:32 libprotobuf-cpp-full.vendor:32
-VNDK29_ARM := prebuilts/vndk/v29/arm/arch-arm-armv7-a-neon/shared/vndk-core
-PRODUCT_COPY_FILES += \
-    $(VNDK29_ARM)/libsoftkeymasterdevice.so:$(TARGET_COPY_OUT_VENDOR)/lib/libsoftkeymasterdevice.so \
-    $(VNDK29_ARM)/libpuresoftkeymasterdevice.so:$(TARGET_COPY_OUT_VENDOR)/lib/libpuresoftkeymasterdevice.so \
-    $(VNDK29_ARM)/libkeymaster_messages.so:$(TARGET_COPY_OUT_VENDOR)/lib/libkeymaster_messages.so \
-    $(VNDK29_ARM)/libkeymaster_portable.so:$(TARGET_COPY_OUT_VENDOR)/lib/libkeymaster_portable.so
+PRODUCT_PACKAGES += \
+    libsoftkeymasterdevice.vendor:32 \
+    libpuresoftkeymasterdevice.vendor:32 \
+    libkeymaster_messages.vendor:32 \
+    libkeymaster_portable.vendor:32
