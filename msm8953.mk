@@ -19,6 +19,8 @@ PRODUCT_SHIPPING_API_LEVEL := 26
 # The stock vendor says ro.vndk.version=29 (its build.prop overrides the 30 of the build), so linkerconfig looks for
 # /apex/com.android.vndk.v29. Without that APEX no linker config is generated and every binary exits with status 1.
 PRODUCT_EXTRA_VNDK_VERSIONS := 29
+# EXTRA_VNDK_VERSIONS only builds the APEX; it is not part of the image unless a package pulls it in.
+PRODUCT_PACKAGES += com.android.vndk.v29
 
 # (Pixel Experience has no hardware/samsung: no Samsung-specific HAL/app is built from source)
 
