@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The odm partition of the phone (carrier preload, kept from the stock firmware) ships com.facebook.system in
+  /odm/priv-app with its own whitelist in /odm/etc/permissions. Android 11 reads that file into the vendor map but
+  checks it only for isVendor() packages; an /odm app is looked up in the system map, finds nothing and
+  PermissionManagerService.systemReady() throws, which restarts system_server forever. Same entries, system map.
+-->
+<permissions>
+    <privapp-permissions package="com.facebook.system">
+        <permission name="android.permission.REAL_GET_TASKS"/>
+        <permission name="android.permission.INSTALL_PACKAGES"/>
+        <permission name="android.permission.DELETE_PACKAGES"/>
+        <permission name="android.permission.CHANGE_COMPONENT_ENABLED_STATE"/>
+    </privapp-permissions>
+</permissions>
