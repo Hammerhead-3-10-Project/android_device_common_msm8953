@@ -16,6 +16,10 @@ DEVICE_PACKAGE_OVERLAYS += $(COMMON_PATH)/overlay
 # Treble: the stock vendor (Android 10) is kept, only /system is built from source
 PRODUCT_SHIPPING_API_LEVEL := 26
 
+# The stock vendor says ro.vndk.version=29 (its build.prop overrides the 30 of the build), so linkerconfig looks for
+# /apex/com.android.vndk.v29. Without that APEX no linker config is generated and every binary exits with status 1.
+PRODUCT_EXTRA_VNDK_VERSIONS := 29
+
 # (Pixel Experience has no hardware/samsung: no Samsung-specific HAL/app is built from source)
 
 # Compressed RAM swap: the stock kernel used Samsung vnswap, this tree uses zram (rootdir/etc/fstab.zram)
