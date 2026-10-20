@@ -85,3 +85,15 @@ PRODUCT_PACKAGES += \
     libhidltransport.vendor:64 \
     libhwbinder.vendor:32 \
     libhwbinder.vendor:64
+
+# Libraries the Android 10 VNDK had and Android 11 no longer offers to the vendor (same soname as the stock vendor
+# expects): copied from the v29 snapshot, 32-bit only because the retained stock services are 32-bit. The vendor modules
+# built from source use libprotobuf-cpp-*-3.9.1, so there is no clash. Same idea as the xiaomi sdm439 trees.
+VNDK29_ARM := prebuilts/vndk/v29/arm/arch-arm-armv7-a-neon/shared/vndk-core
+PRODUCT_COPY_FILES += \
+    $(VNDK29_ARM)/libprotobuf-cpp-lite.so:$(TARGET_COPY_OUT_VENDOR)/lib/libprotobuf-cpp-lite.so \
+    $(VNDK29_ARM)/libprotobuf-cpp-full.so:$(TARGET_COPY_OUT_VENDOR)/lib/libprotobuf-cpp-full.so \
+    $(VNDK29_ARM)/libsoftkeymasterdevice.so:$(TARGET_COPY_OUT_VENDOR)/lib/libsoftkeymasterdevice.so \
+    $(VNDK29_ARM)/libpuresoftkeymasterdevice.so:$(TARGET_COPY_OUT_VENDOR)/lib/libpuresoftkeymasterdevice.so \
+    $(VNDK29_ARM)/libkeymaster_messages.so:$(TARGET_COPY_OUT_VENDOR)/lib/libkeymaster_messages.so \
+    $(VNDK29_ARM)/libkeymaster_portable.so:$(TARGET_COPY_OUT_VENDOR)/lib/libkeymaster_portable.so
