@@ -77,3 +77,11 @@ $(call inherit-product, $(COMMON_PATH)/runtime32.mk)
 PRODUCT_VENDOR_PROPERTIES += \
     ro.hardware.gralloc=a11 \
     ro.hardware.hwcomposer=a11
+
+# Android 11 dropped libhidltransport and libhwbinder (empty stubs, merged into libhidlbase/libbinder), but the stock
+# Android 10 vendor services still list them in DT_NEEDED and, with the strict VNDK, they are looked up in /vendor.
+PRODUCT_PACKAGES += \
+    libhidltransport.vendor:32 \
+    libhidltransport.vendor:64 \
+    libhwbinder.vendor:32 \
+    libhwbinder.vendor:64
