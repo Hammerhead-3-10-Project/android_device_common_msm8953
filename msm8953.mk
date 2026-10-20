@@ -91,8 +91,5 @@ PRODUCT_PACKAGES += \
 # expects). They are vendor_available in Android 11 and some are already installed by other modules, so they are requested
 # as 32-bit vendor packages (a second copy rule fails in Kati with 'overriding commands'); the retained stock services are 32-bit.
 PRODUCT_PACKAGES += libprotobuf-cpp-lite.vendor:32 libprotobuf-cpp-full.vendor:32
-PRODUCT_PACKAGES += \
-    libsoftkeymasterdevice.vendor:32 \
-    libpuresoftkeymasterdevice.vendor:32 \
-    libkeymaster_messages.vendor:32 \
-    libkeymaster_portable.vendor:32
+# libsoftkeymasterdevice, libpuresoftkeymasterdevice, libkeymaster_messages and libkeymaster_portable are the Android 10
+# builds copied by vendor/samsung/a6plte/arm64/arm64-vendor.mk (the stock keymaster HAL needs the A10 ABI).
