@@ -21,6 +21,11 @@ PRODUCT_SHIPPING_API_LEVEL := 26
 
 # (Pixel Experience has no hardware/samsung: no Samsung-specific HAL/app is built from source)
 
+# Android 11 expects the USB gadget HAL (without it UsbDeviceManager falls back to the legacy
+# handler and MTP/PTP cannot be switched on); it drives the configfs gadget built by init
+PRODUCT_PACKAGES += \
+    android.hardware.usb.gadget@1.1-service
+
 # Compressed RAM swap: the stock kernel used Samsung vnswap, this tree uses zram (rootdir/etc/fstab.zram)
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/rootdir/etc/fstab.zram:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.zram \
