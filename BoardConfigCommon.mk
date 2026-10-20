@@ -68,8 +68,8 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
 BOARD_ROOT_EXTRA_FOLDERS := efs omr preload
 
-# Treble: the vendor is Android 10 (VNDK 29). Regular (strict) VNDK: the vendor gets its VNDK libraries from the
-# com.android.vndk.v29 APEX (PRODUCT_EXTRA_VNDK_VERSIONS in msm8953.mk), not from the Android 11 system ones.
+# Treble: the vendor blobs are Android 10 but the vendor runs on the current VNDK (ro.vndk.version=30), as in the other
+# Android 11 trees with an old vendor. The modules built from source for /vendor link against the same VNDK.
 BOARD_VNDK_VERSION := current
 PRODUCT_FULL_TREBLE_OVERRIDE := true
 
